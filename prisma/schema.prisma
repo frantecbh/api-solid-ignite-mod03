@@ -13,10 +13,32 @@ datasource db {
 model User {
   id String @id @default(cuid())
 
-  name  String
-  email String @unique
+  name          String
+  email         String @unique
+  password_hash String
 
   createdAt DateTime @default(now())
 
   @@map("users")
+}
+
+model Gym {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  phone       String?
+  latitude    Decimal
+  longitude   Decimal
+  createAt    DateTime @default(now())
+
+  @@map("gyms")
+}
+
+model CheckIn {
+  id           String    @id @default(cuid())
+  validated_at DateTime?
+
+  createAt DateTime @default(now())
+
+  @@map("check_ins")
 }
