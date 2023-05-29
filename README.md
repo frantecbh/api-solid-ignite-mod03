@@ -21,6 +21,9 @@ npm i @rocketseat/eslint-config -D
 
 }
 
+npm i prisma -D
+npx prisma init
+
 
 ## Instalação
 
