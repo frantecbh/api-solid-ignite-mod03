@@ -24,6 +24,10 @@ npm i @rocketseat/eslint-config -D
 npm i prisma -D
 npx prisma init
 
+criando um docker para o banco;
+
+docker run --name api-solid-pg -e POSTGRESQL_USERNAME=docker -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=apisolid -p5432:5432 -d bitnami/postgresql:latest
+
 
 ## Instalação
 
