@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   name          String
   email         String @unique
@@ -19,26 +19,35 @@ model User {
 
   createdAt DateTime @default(now())
 
+  checkIns CheckIn[]
+
   @@map("users")
 }
 
+model CheckIn {
+  id           String    @id @default(uuid())
+  validated_at DateTime?
+
+  user_id String
+  user    User   @relation(fields: [user_id], references: [id])
+
+  gym_id String
+  gym    Gym    @relation(fields: [gym_id], references: [id])
+
+  createAt DateTime @default(now())
+
+  @@map("check_ins")
+}
+
 model Gym {
-  id          String   @id @default(cuid())
+  id          String    @id @default(uuid())
   title       String
   description String?
   phone       String?
   latitude    Decimal
   longitude   Decimal
-  createAt    DateTime @default(now())
+  createAt    DateTime  @default(now())
+  checkIns    CheckIn[]
 
   @@map("gyms")
-}
-
-model CheckIn {
-  id           String    @id @default(cuid())
-  validated_at DateTime?
-
-  createAt DateTime @default(now())
-
-  @@map("check_ins")
 }
